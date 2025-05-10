@@ -1,0 +1,37 @@
+#include <DHT.h>
+
+#define DHTPIN 2
+#define DHTTYPE DHT22
+#define HEATER_PIN 3
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(9600);
+  dht.begin();
+  pinMode(HEATER_PIN, OUTPUT);
+}
+
+void loop() {
+  float temp = dht.readTemperature();
+
+  if (isnan(temp)) {
+    Serial.println("Failed to read temperature!");
+    return;
+  }
+
+  Serial.print("Temperature: ");
+  Serial.println(temp);
+
+  if (temp < 25) {
+    digitalWrite(HEATER_PIN, HIGH); // Heater ON
+    Serial.println("Heater: ON");
+  } else if (temp > 35) {
+    digitalWrite(HEATER_PIN, LOW); // Heater OFF
+    Serial.println("Heater: OFF");
+  } else {
+    Serial.println("Heater: STABILIZING");
+  }
+
+  delay(1000); // 1 second delay
+}
