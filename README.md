@@ -39,7 +39,7 @@ To design and implement a basic embedded heater control system that turns a heat
      |
      v
 [Serial Monitor] ← Logs temperature & state
-![image](https://github.com/user-attachments/assets/30511879-c24b-46b1-a605-2303858bb7bc)
+
 
 ```
 
